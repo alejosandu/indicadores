@@ -1,7 +1,16 @@
 import React from 'react'
 import openSocket from 'socket.io-client'
 
-const socket = openSocket(process.env.REACT_APP_SOCKET_SERVER)
+const namespace = "/chat"
+
+const socket = openSocket(
+    `${process.env.REACT_APP_SOCKET_SERVER}${namespace}`,
+    {
+        query: {
+            token: "123456"
+        }
+    }
+)
 
 class Chat extends React.PureComponent {
 
