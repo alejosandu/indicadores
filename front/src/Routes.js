@@ -15,7 +15,8 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  Chat
+  Chat,
+  ThinkingInReact as Tir
 } from './views';
 
 const Routes = () => {
@@ -32,6 +33,15 @@ const Routes = () => {
         layout={MainLayout}
         path="/chat"
       />
+      <RouteWithLayout
+        component={Tir}
+        exact
+        layout={MainLayout}
+        path="/tir"
+      />
+
+
+      {/* DEFAULT */}
       <RouteWithLayout
         component={DashboardView}
         exact

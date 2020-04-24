@@ -87,6 +87,11 @@ const Sidebar = props => {
       title: 'Chat',
       href: '/chat',
       icon: <SettingsIcon />
+    },
+    {
+      title: 'Thinking in React',
+      href: '/tir',
+      icon: <SettingsIcon />
     }
   ];
 
