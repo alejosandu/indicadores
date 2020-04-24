@@ -16,7 +16,8 @@ import {
   SignIn as SignInView,
   NotFound as NotFoundView,
   Chat,
-  ThinkingInReact as Tir
+  ThinkingInReact as Tir,
+  IngresoIndicadores
 } from './views';
 
 const Routes = () => {
@@ -38,6 +39,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/tir"
+      />
+      <RouteWithLayout
+        component={IngresoIndicadores}
+        exact
+        layout={MainLayout}
+        path="/ingreso-indicadores"
       />
 
 

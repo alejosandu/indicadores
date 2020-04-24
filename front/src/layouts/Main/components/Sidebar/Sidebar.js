@@ -92,6 +92,11 @@ const Sidebar = props => {
       title: 'Thinking in React',
       href: '/tir',
       icon: <SettingsIcon />
+    },
+    {
+      title: 'Ingreso indicadores',
+      href: '/ingreso-indicadores',
+      icon: <SettingsIcon />
     }
   ];
 
