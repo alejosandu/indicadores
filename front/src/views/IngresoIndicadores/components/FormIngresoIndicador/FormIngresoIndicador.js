@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-   Card,
-   CardHeader,
-   CardActions,
-   Divider,
-   Button,
-} from '@material-ui/core';
+import { Card, CardHeader, CardContent, CardFooter, GridContainer, Button } from 'components'
 
-import {
-   CardContent
-} from './components';
+import Content from './Content';
 
-const AccountDetails = props => {
-   const { className, ...rest } = props;
+const FormIngresoIndicador = props => {
 
    const [state, setState] = useState({
       "precioInternet": "156.26",
@@ -51,6 +42,7 @@ const AccountDetails = props => {
          displayName: "Cumple",
          fieldName: "cumpleMinimo",
          inputType: "select",
+         addDefaultOption: false,
          selectOptions: [
             {
                id: 10,
@@ -70,32 +62,33 @@ const AccountDetails = props => {
    ]
 
    return (
-      <Card {...rest} >
+      <Card>
+         <CardHeader
+            title={`Nuevo indicador ${props.indicadornombre}`}
+            subheader={props.indicadorguia}
+         />
          <form autoComplete="off" noValidate >
-            <CardHeader
-               title={`Nuevo indicador ${props.indicadornombre}`}
-               subheader={props.indicadorguia}
-            />
-            <Divider />
-            <CardContent inputFields={inputFields} inputValues={state} />
-            <Divider />
-            <CardActions>
-               <Button color="primary" variant="contained" >Save details</Button>
-            </CardActions>
+            <CardContent>
+               <GridContainer>
+                  <Content inputFields={inputFields} inputValues={state} />
+               </GridContainer>
+            </CardContent>
          </form>
+         <CardFooter>
+            <Button color="primary" variant="contained" >Guardar</Button>
+         </CardFooter>
       </Card>
    );
 };
 
-AccountDetails.defaultProps = {
+FormIngresoIndicador.defaultProps = {
    indicadornombre: "",
    indicadorguia: "",
    indicadorinputs: []
 }
 
-AccountDetails.propTypes = {
-   className: PropTypes.string,
+FormIngresoIndicador.propTypes = {
    indicadornombre: PropTypes.string
 };
 
-export default AccountDetails;
+export default FormIngresoIndicador;

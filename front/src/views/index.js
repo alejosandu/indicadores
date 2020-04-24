@@ -11,3 +11,4 @@ export { default as UserList } from './UserList';
 export { default as Chat } from './Chat';
 export { default as ThinkingInReact } from './ThinkingInReact';
 export { default as IngresoIndicadores } from './IngresoIndicadores'
+export { default as CrearIndicador } from './CrearIndicador'

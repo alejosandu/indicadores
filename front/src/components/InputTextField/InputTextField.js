@@ -35,9 +35,12 @@ const InputNumber = (props) => {
 }
 
 const InputSelect = (props) => {
+   const defaultOption = { displayValue: "Seleccione", value: "-1" }
    let selectOptions = [...props.selectOptions]
    if( props.selectOptions.length === 0 ) {
-      selectOptions = [{ displayValue: "Seleccione", value: "-1" }]
+      selectOptions = [defaultOption]
+   } else if (props.addDefaultOption) {
+      selectOptions = [defaultOption,...selectOptions]
    }
    return (
       <TextField
@@ -65,7 +68,7 @@ const InputSelect = (props) => {
    )
 }
 
-const Input = (props) => {
+const InputTextField = (props) => {
    switch (props.inputType) {
       case 'number': return <InputNumber {...props} />;
       case 'select': return <InputSelect {...props} />;
@@ -73,7 +76,7 @@ const Input = (props) => {
    }
 }
 
-Input.defaultProps = {
+InputTextField.defaultProps = {
    required: false,
    displayName: "",
    fieldName: "",
@@ -81,7 +84,7 @@ Input.defaultProps = {
    inputEvents: {},
 }
 
-Input.propTypes = {
+InputTextField.propTypes = {
    required: PropTypes.bool,
    displayName: PropTypes.string,
    fieldName: PropTypes.string,
@@ -89,4 +92,4 @@ Input.propTypes = {
    inputEvents: PropTypes.object
 }
 
-export default Input
+export default InputTextField

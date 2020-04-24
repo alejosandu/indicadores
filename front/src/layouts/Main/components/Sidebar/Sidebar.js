@@ -83,6 +83,8 @@ const Sidebar = props => {
       href: '/settings',
       icon: <SettingsIcon />
     },
+
+
     {
       title: 'Chat',
       href: '/chat',
@@ -96,6 +98,11 @@ const Sidebar = props => {
     {
       title: 'Ingreso indicadores',
       href: '/ingreso-indicadores',
+      icon: <SettingsIcon />
+    },
+    {
+      title: 'Crear indicadores',
+      href: '/crear-indicadores',
       icon: <SettingsIcon />
     }
   ];

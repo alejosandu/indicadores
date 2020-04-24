@@ -17,7 +17,8 @@ import {
   NotFound as NotFoundView,
   Chat,
   ThinkingInReact as Tir,
-  IngresoIndicadores
+  IngresoIndicadores,
+  CrearIndicador
 } from './views';
 
 const Routes = () => {
@@ -45,6 +46,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/ingreso-indicadores"
+      />
+      <RouteWithLayout
+        component={CrearIndicador}
+        exact
+        layout={MainLayout}
+        path="/crear-indicadores"
       />
 
 
