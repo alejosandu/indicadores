@@ -3,31 +3,38 @@ import openSocket from 'socket.io-client'
 
 const namespace = "/chat"
 
-const socket = openSocket(
-    `${process.env.REACT_APP_SOCKET_SERVER}${namespace}`,
-    {
-        query: {
-            token: "123456"
-        }
-    }
-)
-
 class Chat extends React.PureComponent {
 
     constructor(props) {
         super(props)
         this.state = {
+            usuario: '',
             newMensaje: '',
             mensajes: []
         }
     }
 
     componentWillMount = () => {
+        this.socket = openSocket(
+            `${process.env.REACT_APP_SOCKET_SERVER}${namespace}`,
+            {
+                query: {
+                    token: "123456"
+                }
+            }
+        )
+    }
+
+    componentDidMount = () => {
         this.messagesHandler()
     }
 
+    componentWillUnmount = () => {
+        this.socket.close()
+    }
+
     messagesHandler = () => {
-        socket.on("mensaje", (data) => {
+        this.socket.on("mensaje", (data) => {
             this.setState({
                 mensajes: [...this.state.mensajes, data]
             })
@@ -41,7 +48,7 @@ class Chat extends React.PureComponent {
 
     handleEnviar = () => {
         // envia mensaje al servidor
-        socket.emit('enviarMensaje',{
+        this.socket.emit('enviarMensaje',{
             usuario: this.state.usuario,
             mensaje: this.state.newMensaje
         })
