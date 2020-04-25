@@ -14,6 +14,17 @@ import {
 const CrearIndicador = (props) => {
    const [state, setState] = useState({})
 
+   const selectOptions = [
+      {
+         value: "number",
+         displayValue: "Numérico"
+      },
+      {
+         value: "select",
+         displayValue: "Lista"
+      }
+   ]
+
    const onChange = (e) => {
       setState({
          ...state,
@@ -30,12 +41,39 @@ const CrearIndicador = (props) => {
             <CardContent>
                <form autoComplete="off" noValidate >
                   <GridContainer>
-                     <GridItem>
+                     <GridItem md={6}>
                         <Input
                            required
                            displayName="Nombre de indicador"
                            fieldName="indicadorNombre"
                            value={state.indicadorNombre}
+                           inputEvents={{
+                              onChange
+                           }}
+                        />
+                     </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                     <GridItem md={6}>
+                        <Input
+                           required
+                           displayName="Parametro"
+                           fieldName="parametroNombre"
+                           placeholder="Ingrese nombre del parametro"
+                           value={state.parametroNombre}
+                           inputEvents={{
+                              onChange
+                           }}
+                        />
+                     </GridItem>
+                     <GridItem md={6}>
+                        <Input
+                           required
+                           displayName="Tipo de parametro"
+                           fieldName="parametroTipo"
+                           inputType="select"
+                           selectOptions={selectOptions}
+                           value={state.parametroTipo}
                            inputEvents={{
                               onChange
                            }}

@@ -12,6 +12,7 @@ const InputText = (props) => {
          margin="dense"
          type="text"
          variant="outlined"
+         placeholder={props.placeholder}
          value={props.value}
          {...props.inputEvents}
       />
@@ -28,6 +29,7 @@ const InputNumber = (props) => {
          margin="dense"
          type="number"
          variant="outlined"
+         placeholder={props.placeholder}
          value={props.value}
          {...props.inputEvents}
       />
@@ -39,7 +41,7 @@ const InputSelect = (props) => {
    let selectOptions = [...props.selectOptions]
    if( props.selectOptions.length === 0 ) {
       selectOptions = [defaultOption]
-   } else if (props.addDefaultOption) {
+   } else if (props.addDefault) {
       selectOptions = [defaultOption,...selectOptions]
    }
    return (
@@ -50,6 +52,7 @@ const InputSelect = (props) => {
          name={props.fieldName}
          margin="dense"
          variant="outlined"
+         placeholder={props.placeholder}
          select
          // eslint-disable-next-line react/jsx-sort-props
          SelectProps={{ native: true }}
@@ -82,6 +85,7 @@ InputTextField.defaultProps = {
    fieldName: "",
    value: "",
    inputEvents: {},
+   selectOptions: []
 }
 
 InputTextField.propTypes = {
