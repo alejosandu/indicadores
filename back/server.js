@@ -10,27 +10,27 @@ const indicadoresSchemma = new Schemma({
 
 const indicadoresModel = mongoose.model('indicadores', indicadoresSchemma)
 
-const conn = mongoose.connect(process.env.MONGO_DB_CONNECTION, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000
-})
-.then((res) => {
-    console.log("Conectado a mongoDB:", process.env.MONGO_DB_CONNECTION);
+// const conn = mongoose.connect(process.env.MONGO_DB_CONNECTION, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   serverSelectionTimeoutMS: 5000
+// })
+// .then((res) => {
+//     console.log("Conectado a mongoDB:", process.env.MONGO_DB_CONNECTION);
 
-    const doc =  indicadoresModel.find().exec()
+//     const doc =  indicadoresModel.find().exec()
 
-    doc.then((res) => {
-        console.log("indicadoresModel: ",res);
-    }).catch((err) => {
-        console.log(err);
-    })
+//     doc.then((res) => {
+//         console.log("indicadoresModel: ",res);
+//     }).catch((err) => {
+//         console.log(err);
+//     })
 
-    return res
-})
-.catch((err) => {
-    console.log("Error al conectar MongoDB", err.reason);
-});
+//     return res
+// })
+// .catch((err) => {
+//     console.log("Error al conectar MongoDB", err.reason);
+// });
 
 const socketio = require('socket.io');
 
