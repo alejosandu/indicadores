@@ -2,19 +2,32 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
+const handleInput = (props) => {
+   const {
+      required,
+      displayName: label,
+      fieldName: name,
+      placeholder,
+      ...rest
+   } = props
+
+   return {
+      required,
+      label,
+      name,
+      placeholder,
+      rest
+   }
+}
+
 const InputText = (props) => {
    return (
       <TextField
-         required={props.required}
          fullWidth
-         label={props.displayName}
-         name={props.fieldName}
          margin="dense"
          type="text"
          variant="outlined"
-         placeholder={props.placeholder}
-         value={props.value}
-         {...props.inputEvents}
+         {...handleInput(props)}
       />
    )
 }
@@ -22,16 +35,11 @@ const InputText = (props) => {
 const InputNumber = (props) => {
    return (
       <TextField
-         required={props.required}
          fullWidth
-         label={props.displayName}
-         name={props.fieldName}
          margin="dense"
          type="number"
          variant="outlined"
-         placeholder={props.placeholder}
-         value={props.value}
-         {...props.inputEvents}
+         {...handleInput(props)}
       />
    )
 }
@@ -44,6 +52,7 @@ const InputSelect = (props) => {
    } else if (props.addDefault) {
       selectOptions = [defaultOption,...selectOptions]
    }
+
    return (
       <TextField
          required={props.required}
@@ -52,12 +61,10 @@ const InputSelect = (props) => {
          name={props.fieldName}
          margin="dense"
          variant="outlined"
-         placeholder={props.placeholder}
          select
          // eslint-disable-next-line react/jsx-sort-props
          SelectProps={{ native: true }}
-         value={props.value}
-         {...props.inputEvents}
+         {...handleInput(props)}
       >
          {selectOptions.map((option,key) => (
             <option

@@ -47,7 +47,7 @@
     "socket.io-client": "^2.3.0",
     "underscore": "^1.9.1",
     "uuid": "^3.3.2",
-    "validate.js": "^0.13.1"
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "eslint": "^6.6.0",

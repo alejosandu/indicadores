@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Collapse from '@material-ui/core/Collapse';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid'
-import { useTheme } from '@material-ui/styles';
 
 const Loader = (props) => {
 
