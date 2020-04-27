@@ -93,6 +93,24 @@ const CrearIndicador = (props) => {
       });
    }
 
+   const onSubmit = (e) => {
+      try {
+         const errors = []
+         if (validator.isEmpty(state.indicadorNombre)) errors.push("Nombre de indicador no puede estar vacío")
+         if (errors.length > 0) throw errors
+      } catch (err) {
+         // control de errores según espeficiación RFC 7807
+         // https://blog.restcase.com/rest-api-error-handling-problem-details-response/
+         const error = {
+            type: "http://",
+            title: "Hay errores en el formulario",
+            detail: err,
+            status: 0
+         }
+         console.log(error);
+      }
+   }
+
    return (
       <Container lg={12} md={12} xl={12} xs={12} >
          <Card>
