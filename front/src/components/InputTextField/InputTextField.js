@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 
 const handleInput = (props) => {
@@ -8,6 +8,8 @@ const handleInput = (props) => {
       displayName: label,
       fieldName: name,
       placeholder,
+      autoComplete = "false",
+      selectOptions,//se extrae select options
       ...rest
    } = props
 
@@ -16,7 +18,8 @@ const handleInput = (props) => {
       label,
       name,
       placeholder,
-      rest
+      autoComplete,
+      ...rest
    }
 }
 
@@ -79,10 +82,11 @@ const InputSelect = (props) => {
 }
 
 const InputTextField = (props) => {
-   switch (props.inputType) {
-      case 'number': return <InputNumber {...props} />;
-      case 'select': return <InputSelect {...props} />;
-      default: return <InputText {...props} />;
+   const { inputType , ...rest } = props
+   switch (inputType) {
+      case 'number': return <InputNumber {...rest} />;
+      case 'select': return <InputSelect {...rest} />;
+      default: return <InputText {...rest} />;
    }
 }
 
@@ -90,8 +94,6 @@ InputTextField.defaultProps = {
    required: false,
    displayName: "",
    fieldName: "",
-   value: "",
-   inputEvents: {},
    selectOptions: []
 }
 
@@ -100,7 +102,7 @@ InputTextField.propTypes = {
    displayName: PropTypes.string,
    fieldName: PropTypes.string,
    value: PropTypes.string,
-   inputEvents: PropTypes.object
+   defaultValue: PropTypes.string,
 }
 
 export default InputTextField
