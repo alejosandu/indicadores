@@ -116,6 +116,12 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/not-found"
       />
+      <RouteWithLayout
+        component={NotFoundView}
+        exact
+        layout={MinimalLayout}
+        path="*"
+      />
       <Redirect to="/not-found" />
     </Switch>
   );

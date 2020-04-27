@@ -12,6 +12,7 @@ import {
 } from 'components'
 
 const CrearIndicador = (props) => {
+
    const [state, setState] = useState({})
 
    const selectOptions = [
