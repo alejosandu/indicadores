@@ -40,7 +40,7 @@ const Main = props => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 1.5 * 1000);
+    }, 3.5 * 1000);
   }, [])
 
   const handleSidebarOpen = () => {
@@ -54,13 +54,16 @@ const Main = props => {
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
   return (
-    <Loader
-      in={loading}
-      enter={750}
-      exit={250}
-      size={200}
-      thickness={1.5}
-    >
+    <React.Fragment>
+      <Loader
+        in={loading}
+        enter={0}
+        exit={750}
+        size={200}
+        thickness={1.5}
+        color="#fff"
+        backgroundColor={theme.palette.primary.main}
+      />
       <div
         className={clsx({
           [classes.root]: true,
@@ -78,7 +81,7 @@ const Main = props => {
           <Footer />
         </main>
       </div>
-    </Loader>
+    </React.Fragment>
   );
 };
 

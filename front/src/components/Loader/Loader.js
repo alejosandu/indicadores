@@ -1,79 +1,71 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom';
-import Fade from '@material-ui/core/Fade';
+import Collapse from '@material-ui/core/Collapse';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid'
+import { useTheme } from '@material-ui/styles';
 
 const Loader = (props) => {
 
+    const theme = useTheme()
+
     const {
         in: loading,
-        children,
         enter: enterTime = 500,
         exit: exitTime = 500,
         size = 40,
         disableShrink = false,
         thickness = 3.6,
         value = 0,
-        variant = 'indeterminate'
+        variant = 'indeterminate',
+        color,
+        backgroundColor
     } = props
-    const [showLoader, setShowLoader] = useState(true)
 
     const circularProps = {
         size,
         disableShrink,
         thickness,
         value,
-        variant
+        variant,
+        style: {
+            color
+        }
     }
 
-    return (
-        <React.Fragment>
-            {
-                showLoader ?
-                    (
-                        <Fade
-                            in={loading}
-                            timeout={
-                                {
-                                    enter: enterTime,
-                                    exit: exitTime
-                                }
-                            }
-                            onExit={() => {
-                                setTimeout(() => {
-                                    setShowLoader((prev) => !prev)
-                                }, exitTime);
-                            }}
-                        >
-                            <Grid
-                                container
-                                direction="column"
-                                justify="center"
-                                alignItems="center"
-                                style={{ minHeight: '100vh' }}
-                            >
-                                <Grid item>
-                                    <CircularProgress {...circularProps} />
-                                </Grid>
-                            </Grid>
-                        </Fade>
-                    ) :
-                    (
-                        <Fade
-                            in={!loading}
-                            timeout={
-                                {
-                                    enter: enterTime,
-                                    exit: exitTime
-                                }
-                            }
-                        >
-                            <div>{children}</div>
-                        </Fade>
-                    )
-            }
-        </React.Fragment>
+    const portalStyle = {
+        position: "absolute",
+        top: 0,
+        backgroundColor,
+        zIndex: 2000,
+        minWidth: "100%"
+    }
+
+    return ReactDOM.createPortal(
+        <div>
+            <Collapse
+                style={portalStyle}
+                in={loading}
+                timeout={
+                    {
+                        enter: enterTime,
+                        exit: exitTime
+                    }
+                }
+            >
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    style={{ minHeight: '100vh' }}
+                >
+                    <Grid item>
+                        <CircularProgress {...circularProps} />
+                    </Grid>
+                </Grid>
+            </Collapse>
+        </div>, document.getElementById("loader-root")
     )
 }
 
