@@ -40,7 +40,7 @@ const Main = props => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 3.5 * 1000);
+    }, 1 * 1000);
   }, [])
 
   const handleSidebarOpen = () => {

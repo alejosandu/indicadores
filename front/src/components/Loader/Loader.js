@@ -7,8 +7,6 @@ import { useTheme } from '@material-ui/styles';
 
 const Loader = (props) => {
 
-    const theme = useTheme()
-
     const {
         in: loading,
         enter: enterTime = 500,
